@@ -80,6 +80,8 @@ java {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.compilerArgs.add("-Xlint:all")
+    // Keep the build warning-free: any new lint or deprecation warning fails compilation.
+    options.compilerArgs.add("-Werror")
     options.deprecation = true
 
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
