@@ -1,15 +1,24 @@
 name: CI
 
 on:
-  push:
   pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+# One run per pull request: a new push cancels the previous run. Runs on main are never cancelled.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
+  # The job id is the required status check of the main ruleset: renaming it blocks every merge.
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: gradle/actions/wrapper-validation@v4
@@ -19,11 +28,17 @@ jobs:
           java-version: '25'
       - uses: gradle/actions/setup-gradle@v4
       - name: Test, package, and report coverage
-        run: bash gradlew clean test jar jacocoTestReport
+        run: bash gradlew clean test jar jacocoTestReport --console=plain
+      - name: Summarize tests and coverage
+        if: ${{ !cancelled() }}
+        run: python3 .github/scripts/ci_summary.py >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
         with:
           name: reports-and-jar
           path: |
             build/libs/*.jar
             build/reports/tests/test/
             build/reports/jacoco/test/
+          if-no-files-found: warn
+          retention-days: 14
