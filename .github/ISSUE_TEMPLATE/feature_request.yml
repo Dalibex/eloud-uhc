@@ -1,0 +1,56 @@
+name: Idea or suggestion
+description: Propose a new feature or an improvement to an existing one.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your idea. Please search the [existing issues](https://github.com/Dalibex/eloud-uhc/issues) first.
+        You can write in English or Spanish.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would it solve?
+      description: Describe the situation in a match where you missed this.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Your proposal
+      description: How it should work, from the point of view of players or the host.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Optional. Other ways to solve it, or how you work around it today.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Classic UHC
+        - Resource Rush
+        - Teams
+        - Admin panel and commands
+        - Skins and identities
+        - Scoreboard and TAB
+        - Other
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and this idea is not proposed yet.
+          required: true

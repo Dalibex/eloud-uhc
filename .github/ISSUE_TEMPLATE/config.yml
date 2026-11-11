@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and help
+    url: https://github.com/Dalibex/eloud-uhc/discussions/categories/q-a
+    about: Ask how to install the plugin, configure it or host a match.
+  - name: Download on Modrinth
+    url: https://modrinth.com/plugin/uhc-eloud
+    about: Official releases.
+  - name: Download on CurseForge
+    url: https://www.curseforge.com/minecraft/bukkit-plugins/uhc-eloud
+    about: Official releases.

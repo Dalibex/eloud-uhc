@@ -93,3 +93,9 @@ Setup:
 4. Use `/uhcadmin` to choose gamemode, teams, shulkers, PVP episode, team episode, game rules, and border/time settings.
 5. Use `/start <size>`.
 6. Confirm with the generated confirmation button.
+
+## Support And Contributing
+
+- Bugs and ideas: open an [issue](https://github.com/Dalibex/eloud-uhc/issues/new/choose). [CONTRIBUTING.md](CONTRIBUTING.md) explains what to include.
+- Questions about installing or hosting: use [Discussions](https://github.com/Dalibex/eloud-uhc/discussions/categories/q-a).
+- Security problems: report them privately as described in [SECURITY.md](SECURITY.md).

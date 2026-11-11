@@ -1,0 +1,110 @@
+name: Bug report
+description: Something in the plugin does not work as expected.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please search the [existing issues](https://github.com/Dalibex/eloud-uhc/issues) first.
+        You can write in English or Spanish. For questions about installing or hosting a match, use [Discussions](https://github.com/Dalibex/eloud-uhc/discussions/categories/q-a) instead.
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      description: Shown in the startup banner of the server console.
+      placeholder: "X.Y.Z"
+    validations:
+      required: true
+
+  - type: input
+    id: server
+    attributes:
+      label: Server software and Minecraft version
+      placeholder: "Paper <Minecraft version> build <number>"
+    validations:
+      required: true
+
+  - type: input
+    id: dependencies
+    attributes:
+      label: Versions of the required plugins
+      description: The plugins this plugin depends on, listed on its download page.
+      placeholder: "TAB X.Y.Z, SkinsRestorer X.Y.Z"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: game-mode
+    attributes:
+      label: Game mode
+      options:
+        - Classic UHC
+        - Resource Rush
+        - Other
+        - Lobby (no match running)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: teams
+    attributes:
+      label: Team setup
+      options:
+        - Solos
+        - Random teams
+        - Custom teams (team selector)
+        - Other
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the problem. Screenshots or videos help.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How many players were online, which settings you changed and what you did, step by step.
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server console errors
+      description: Paste the error from `logs/latest.log`. Remove IP addresses and other private data first.
+      render: shell
+
+  - type: textarea
+    id: other-plugins
+    attributes:
+      label: Other plugins installed
+      description: Optional. Other plugins can interfere with scoreboards, teams or skins.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues and this bug is not reported yet.
+          required: true
