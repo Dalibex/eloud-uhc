@@ -1,101 +1,102 @@
-# UHC ELOUD
+# ⚔️ UHC ELOUD
 
-![Plugin Version](https://img.shields.io/badge/Plugin_Version-1.5.4-orange)
-![Minecraft Version](https://img.shields.io/badge/Minecraft_Version-26.3-gold)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Platform](https://img.shields.io/badge/Platform-Paper%20Recommended-blue)
+[![Release](https://img.shields.io/github/v/release/Dalibex/eloud-uhc?sort=semver)](https://github.com/Dalibex/eloud-uhc/releases/latest)
+[![Minecraft](https://img.shields.io/modrinth/game-versions/uhc-eloud?label=Minecraft)](https://modrinth.com/plugin/uhc-eloud/versions)
+[![Modrinth downloads](https://img.shields.io/modrinth/dt/uhc-eloud?logo=modrinth&label=Modrinth)](https://modrinth.com/plugin/uhc-eloud)
+[![CurseForge downloads](https://img.shields.io/curseforge/dt/1413639?logo=curseforge&label=CurseForge)](https://www.curseforge.com/minecraft/bukkit-plugins/uhc-eloud)
+[![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-blue)](LICENSE)
 
-UHC ELOUD is a Paper UHC plugin based on **UHC ESPAÑA** by **ElRichMC**. It manages game setup, scatter, chapters, scoreboards, teams, identities, supplies, victory flow, and administration tools for hosted UHC matches.
+UHC ELOUD is a Paper plugin for hosting UHC matches, inspired by **UHC ESPAÑA** by **ElRichMC**. It runs the whole match: setup from an admin panel, scatter, chapters, teams, fake identities, supplies and the victory.
 
-## What's New In 1.5.4
+What changed in each version is in the [changelog](CHANGELOG.md).
 
-Version `1.5.4` focuses on smoother hosted matches, clearer administration, and better player-facing options.
+## 🎮 Features
 
-### New And Improved
+- **Match flow:** `/reset` prepares the lobby, `/start` scatters the players after a confirmation, and the match runs in chapters up to the victory.
+- **Game modes:**
+  - **Classic UHC:** the last team or player standing wins.
+  - **Resource Rush:** each episode reveals random items to collect, up to 12. Teams are ranked on a podium in the order they collect all of them, and the first one wins.
+- **Admin Panel:** game mode, chapter time, border, game rules, teams, PVP episode, team episode and supply shulkers, from one menu.
+- **Teams:** solos or teams, random or chosen with a team selector, assigned by an admin, and formed in the episode you choose.
+- **Fake identities:** players get another player's skin and name every chapter, revealed by hitting them, and drop a head with their real skin when they die. Uses SkinsRestorer.
+- **Supplies:** shulker boxes in the episodes you choose, golden heads, team compasses and a boat when the scatter lands a player on water.
+- **Combat options:** 1.8-style combat (no attack cooldown, no sweep attack, legacy axe damage) and an offhand and shield lock.
+- **Player interface:** sidebar, health in the player list, and tablist names and nametags that follow the fake identities. Uses TAB.
+- **Languages:** Spanish, English, French, German and Italian. Each player picks one with `/lang`.
 
-- New languages: Spanish, English, French, German, and Italian are available with `/lang`.
-- Cleaner `/uhccommands`: player and admin commands are now separated in an interactive chat menu.
-- Configurable shulker episodes: both episode shulkers can be configured independently of the Admin Panel, and both can use the same episode if desired.
-- Faster identity setup: episode 1 skin rotation starts sooner and applies identities more quickly.
-- Safer match start: players receive short start protection, and water rescue spawns give a boat automatically.
-- Skin rotation toggle: fake identity rotation can be turned on or off from the Admin Panel (General Rules), only while in the lobby; it is on by default.
-- Fallback skin roster: `config.yml` ships a configurable list of public accounts (`skins.fallback-roster`) used as extra skin sources, so players without a resolvable skin still get a unique identity instead of a default skin.
-- Preloaded skins: player skins are loaded when they join and when the match roster is prepared, so identity rotation and death heads resolve faster.
-- Smoother scatter: chunks around the scatter points are loaded before players are teleported, reducing lag at match start.
-- Smoother TAB refresh: tablist names and nametags refresh one player at a time during match start, chapter changes, and `/reset`, so TAB animations no longer freeze and stale fake names disappear quickly.
-- Clearer shulker setup: the shulker toggles now sit next to their episode selectors in the Shulkers panel.
-- Clearer console output: dependency checks and the startup banner now print clean, readable status lines for server hosts.
+## 🧰 Requirements
 
-### Fixes
+- A [Paper](https://papermc.io/) or Purpur server. The supported Minecraft versions are listed on each [download](https://modrinth.com/plugin/uhc-eloud/versions).
+- Java 25 or newer.
+- [TAB](https://github.com/NEZNAMY/TAB/releases) and [SkinsRestorer](https://github.com/SkinsRestorer/SkinsRestorer/releases). Both are required: the plugin does not start without them.
 
-- 1.8 combat balance: axes now use legacy-style damage when the 1.8 combat option is enabled correctly.
-- TAB health: player-list health is created when needed and refreshed shortly after the match starts and whenever a player reconnects.
-- PVP episode 1: PVP now activates correctly at match start when configured for episode 1.
-- Live admin settings: shulker, PVP episode, team episode, and skin rotation settings lock once the match starts, while 1.8 combat and offhand/shield settings remain adjustable during the game.
-- Death heads: death heads are placed more safely and fall back to dropping a player head when placement is impossible.
-- Rescue boat message: the water rescue message now shows the plugin prefix instead of a raw `%prefix%` placeholder.
-- Clean lobby after reset: `/reset` immediately restores real names in the tablist and nametags, with no leftover fake identities from the previous match.
-- Skins fix: Skins are now correctly applied to players when they join the server, match starts and on different parts of the game.
+## 📥 Installation
 
-## Main Features
+1. Download the plugin from [Modrinth](https://modrinth.com/plugin/uhc-eloud), [CurseForge](https://www.curseforge.com/minecraft/bukkit-plugins/uhc-eloud) or the [GitHub releases](https://github.com/Dalibex/eloud-uhc/releases).
+2. Put it in the `plugins/` folder of the server, together with TAB and SkinsRestorer.
+3. Start the server. The console shows whether both dependencies were found.
 
-- Hosted UHC flow: `/reset`, confirmed `/start`, scatter, chapters, border controls, final phase, and victory handling.
-- Game modes: Classic UHC for standard matches and Resource Rush for goal-based games with podium results.
-- Admin Panel: configure gamemode, chapter time, border, game rules, custom teams, PVP episode, team episode, and shulker episodes.
-- Teams: solos or teams, optional custom team selector, manual team assignment, and automatic team formation by episode.
-- PVP timing: choose the episode where the gentleman's pact ends and PVP becomes active.
-- Supplies: configurable episode shulkers, golden heads, tracking compasses, and rescue boats for water scatter saves.
-- Combat options: optional 1.8-style combat, offhand/shield lock, sweep attack removal, and legacy-style axe damage.
-- Identity system: fake skin rotation, reveal-on-hit, reconnect resync, and real-skin death heads using SkinsRestorer.
-- Player UI: dynamic sidebar, TAB player-list health, identity-aware tablist/nametags, and team compass updates.
-- Languages: Spanish, English, French, German, and Italian with personal `/lang <language>` preference.
+Each GitHub release also has a server pack (`UHC_ELOUD_<version>_MC<minecraft>.zip`) per Minecraft version: a prepared server folder with links to download Paper, TAB and SkinsRestorer.
 
-## Commands
+## 📋 Hosting A Match
 
-| Command                       | Description | Permission     |
-|:------------------------------|:--|:---------------|
-| `/uhcadmin`                   | Opens the Admin Panel. | `admin`        |
-| `/uhccommands`                | Shows an interactive player/admin command menu. | `player/admin` |
-| `/reset`                      | Resets game state and prepares the lobby. | `admin`        |
-| `/start <size>`               | Starts the confirmed scatter/countdown flow with the selected border size. | `admin`        |
-| `/confirmstart <size>`        | Interactive confirmation command generated by `/start`. | `admin`        |
-| `/cancelstart`                | Cancels a pending `/start` confirmation. | `admin`        |
-| `/settime <h> <m> <s>`        | Sets chapter duration while in lobby. | `admin`        |
-| `/assignteam <player> <team>` | Assigns a player to a custom team. | `admin`        |
-| `/setteamepisode <1-10>`      | Sets the team formation episode. | `admin`        |
-| `/setpvpepisode <1-10>`       | Sets the episode where PVP becomes active. | `admin`        |
-| `/abandon [player]`           | Leaves the match or marks a player as eliminated as admin. | `player/admin` |
-| `/lang <es/en/fr/de/it>`      | Changes your language preference. | `player`       |
-| `/team [name]`                | Creates or renames your team. | `player`       |
+1. Run `/reset`. Players wait in the lobby in adventure mode, without taking damage.
+2. Change the chapter length with `/settime <h> <m> <s>` if 20 minutes is not what you want.
+3. Open `/uhcadmin` and choose the game mode, teams, PVP episode, team episode, shulkers, game rules and border.
+4. Run `/start <size>` with the border size in blocks, and confirm with the button in chat.
 
-## Installation And Requirements
+> [!TIP]
+> Pregenerate the world up to the border before a real match. Loading chunks during the scatter causes lag.
 
-- Java 25.
-- Paper-compatible server for Minecraft (Paper recommended).
-- Hard dependencies declared in `plugin.yml`:
-  - [TAB](https://github.com/NEZNAMY/TAB/releases)
-  - [SkinsRestorer](https://github.com/SkinsRestorer/SkinsRestorer/releases)
+Admin Panel settings last until the server restarts.
 
-Setup:
+## ⌨️ Commands
 
-1. Place the built plugin jar in `/plugins`.
-2. Install TAB and SkinsRestorer.
-3. Restart the server.
-4. Run `/reset` after all dependencies are loaded.
-5. Configure the match from `/uhcadmin`.
-6. Run `/start <border-size>` and confirm from the interactive prompt.
+*Admin* means operators, or players with the `uhc.admin` permission.
 
-## Host Flow
+| Command | What it does | Who |
+| :-- | :-- | :-- |
+| `/uhccommands` | Lists the commands in an interactive chat menu. | Everyone |
+| `/lang <es\|en\|fr\|de\|it>` | Changes your language. Only in the lobby. | Everyone |
+| `/team <name>` | Renames your team. | Everyone |
+| `/abandon [player]` | Leaves the match. An admin can name another player, online or offline, to eliminate them. | Everyone |
+| `/uhcadmin` | Opens the Admin Panel. | Admin |
+| `/reset` | Resets the match and prepares the lobby. | Admin |
+| `/start <size>` | Starts the match with a border of `<size>` blocks, at least 20, after a confirmation. | Admin |
+| `/confirmstart`, `/cancelstart` | Run by the buttons of the `/start` confirmation. You do not need to type them. | Admin |
+| `/settime <h> <m> <s>` | Sets the chapter length. Only in the lobby. | Admin |
+| `/assignteam <player> <team>` | Puts a player in a team. | Admin |
+| `/setteamepisode <1-10>` | Sets the episode when teams are formed. | Admin |
+| `/setpvpepisode <1-10>` | Sets the episode when PVP starts. | Admin |
 
-1. Start the server and verify TAB/SkinsRestorer are loaded.
-2. Run `/reset`.
-3. Use `/settime <h> <m> <s>` if the default chapter time should change.
-4. Use `/uhcadmin` to choose gamemode, teams, shulkers, PVP episode, team episode, game rules, and border/time settings.
-5. Use `/start <size>`.
-6. Confirm with the generated confirmation button.
+## ⚙️ Configuration
 
-## Support And Contributing
+The plugin creates `plugins/ELOUD_UHC/config.yml` on the first start.
+
+| Key | What it does | Default |
+| :-- | :-- | :-- |
+| `language` | Language of players who have not chosen one with `/lang`: `es`, `en`, `fr`, `de` or `it`. | `en` |
+| `tab.setup-mode` | Whether the plugin writes TAB's `config.yml` and `animations.yml`: `off` never, `once` on the first start, `force` on every start. Use `off` if you keep your own TAB configuration. | `once` |
+| `skins.fallback-roster` | Public accounts used as extra skins when the players do not have enough different skins. | A list of known players |
+
+`tab.setup-completed` and `migrations` are written by the plugin. Set `tab.setup-completed` back to `false` to let `once` write the TAB files again. The language each player chose is saved in `player_langs.yml`.
+
+## 🛠️ Building From Source
+
+You need JDK 25. Gradle is downloaded by the wrapper.
+
+```bash
+./gradlew clean test jar
+```
+
+On Windows, use `gradlew.bat`. The plugin is written to `build/libs/ELOUD_UHC-<version>.jar`. `./gradlew runServer` starts a local test server, which also needs TAB and SkinsRestorer in `run/plugins/`.
+
+## 💬 Support
 
 - Bugs and ideas: open an [issue](https://github.com/Dalibex/eloud-uhc/issues/new/choose). [CONTRIBUTING.md](CONTRIBUTING.md) explains what to include.
 - Questions about installing or hosting: use [Discussions](https://github.com/Dalibex/eloud-uhc/discussions/categories/q-a).
 - Security problems: report them privately as described in [SECURITY.md](SECURITY.md).
+
+## 📄 License
+
+UHC ELOUD is licensed under the [PolyForm Noncommercial License 1.0.0](LICENSE). It allows using, changing and sharing the plugin for noncommercial purposes. Any other use needs the author's permission.
