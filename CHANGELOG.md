@@ -1,156 +1,162 @@
-Changelog - UHC ELOUD 1.5.4
+# Changelog
 
-Note: It is recommended to perform tests on development servers before using this build in a live event. I have conducted intensive testing (including simulations with bots), but I do not guarantee that minor errors will not exist in specific environments.
+All notable changes to UHC ELOUD are documented in this file.
 
-=== ENGLISH ===
+## [Unreleased]
 
-New Features
-- Shulker Episode Selector: both episode shulkers can now be configured from the Admin Panel with independent episode selectors (1-10). Both can use the same episode if desired.
-- Rescue Boat: if scatter places a player on a glass rescue block over water, the player receives a boat automatically.
-- New Languages: French, German and Italian were added alongside Spanish and English.
-- Interactive Commands Menu: /uhccommands now separates player and admin commands with clickable navigation in chat.
-- Skin Rotation Toggle: fake identity rotation can now be enabled or disabled from the Admin Panel (General Rules -> Skin Rotation). It is enabled by default and can only be changed in the lobby.
-- Fallback Skin Roster: config.yml now includes a configurable list of public account names (skins.fallback-roster) used as extra skin sources when match players do not have enough unique resolvable skins, so fewer players fall back to a default skin.
+## [1.5.4] - 2026-09-27
 
-Adjustments and Improvements
-- Scatter Preparation Note: pregenerating the world up to the selected border is recommended for production UHC matches to reduce live worldgen lag and Paper worldgen warnings during scatter.
-- Skin Rotation Timing: initial identity rotation starts sooner and applies skins faster during episode 1.
-- Start Protection: players now receive short protection and regeneration at match start to reduce accidental spawn/scatter damage.
-- 1.8 Combat Balance: axes now use legacy-style damage when 1.8 combat is enabled. Diamond axes deal 6 damage and netherite axes deal 7.
-- Faster Skin Loading: player skins are preloaded when they join and when the match roster is prepared, so identity rotation and death heads resolve quicker.
-- Preloaded Scatter Chunks: chunks around the scatter points are loaded before players are teleported, reducing lag during match start.
-- Smoother TAB Refresh: tablist names and nametags now refresh one player at a time without stalling TAB's animations, avoiding frozen or stale identities during match start, chapter changes and /reset.
-- Shulkers Panel Layout: the shulker toggles now sit next to their episode selectors for a faster setup flow.
-- Clearer Console Output: dependency checks and the startup banner now print clean, readable status lines for server hosts.
+Smoother hosted matches, clearer administration and three new languages. Builds for Minecraft 26.2 and 26.3.
 
-Bugfixes
-- TAB Health: the player-list health display is created when needed and refreshed shortly after the match starts and whenever a player reconnects.
-- PVP Episode 1: PVP now activates correctly at match start when the configured PVP episode is 1.
-- Live Admin Settings: shulker, PVP episode, team episode and skin rotation settings are locked once the match starts, while 1.8 combat and offhand/shield settings can still be adjusted during the game.
-- Death Heads Under Water: death head placement now searches for a safer replaceable position and drops a fallback player head if the block placement cannot be completed.
-- Rescue Boat Message: the water rescue message now shows the plugin prefix instead of a raw %prefix% placeholder.
-- Real Names After Reset: /reset now restores real names to the tablist and nametags immediately, without leftover fake identities from the previous match.
+### Added
 
-=== ESPAÑOL ===
+- French, German and Italian, next to Spanish and English. Each player picks a language with `/lang`.
+- `/uhccommands` opens an interactive chat menu with the player and admin commands apart.
+- Each episode shulker has its own episode selector (1-10) in the Admin Panel, and both can use the same episode.
+- Rescue boat: a player scattered onto a rescue glass block over water receives a boat.
+- Skin rotation can be turned off in the Admin Panel (*General Rules* > *Skin Rotation*). It is on by default and can only be changed in the lobby.
+- `skins.fallback-roster` in `config.yml`: public accounts used as extra skin sources, so players without a skin of their own still get a unique identity.
+- Short protection and regeneration at match start, against accidental damage from the scatter.
 
-Nuevas Funciones
-- Selector de Episodio de Shulkers: ahora las dos shulkers de episodio se pueden configurar desde el Panel de Admin con selectores independientes (1-10). Ambas pueden usar el mismo episodio si se desea.
-- Barco de Rescate: si el scatter coloca a un jugador sobre un bloque de cristal de rescate encima de agua, recibe un barco automáticamente.
-- Nuevos Idiomas: se añadieron francés, alemán e italiano junto a español e inglés.
-- Menú de Comandos Interactivo: /uhccommands ahora separa comandos de jugador y admin con navegación clicable en el chat.
-- Interruptor de Rotación de Skins: la rotación de identidades falsas ahora se puede activar o desactivar desde el Panel de Admin (Reglas Generales -> Rotación de Skins). Está activada por defecto y solo se puede cambiar en el lobby.
-- Roster de Skins de Reserva: config.yml ahora incluye una lista configurable de cuentas públicas (skins.fallback-roster) que se usan como fuentes extra de skins cuando a los jugadores no les alcanzan skins únicas y resolubles, para que menos jugadores acaben con la skin por defecto.
+### Changed
 
-Ajustes y Mejoras
-- Nota de Scatter: se recomienda pregenerar el mundo hasta el borde elegido para partidas reales, reduciendo lag de generación y warnings de worldgen de Paper durante el scatter.
-- Tiempo de Rotación de Skins: la rotación inicial de identidades empieza antes y aplica skins más rápido durante el episodio 1.
-- Protección Inicial: los jugadores reciben una protección corta y regeneración al iniciar la partida para reducir daño accidental del spawn/scatter.
-- Balance de Combate 1.8: las hachas ahora usan daño estilo legacy cuando el combate 1.8 está activado. La de diamante hace 6 de daño y la de netherita 7.
-- Carga de Skins Más Rápida: las skins de los jugadores se precargan al conectarse y al preparar el roster de la partida, de modo que la rotación de identidades y las cabezas de muerte se resuelven antes.
-- Chunks del Scatter Precargados: los chunks alrededor de los puntos de scatter se cargan antes de teletransportar a los jugadores, reduciendo el lag al empezar la partida.
-- Refresco de TAB Más Suave: los nombres del tabulador y los nametags se actualizan de uno en uno sin frenar las animaciones de TAB, evitando identidades congeladas u obsoletas al empezar la partida, en los cambios de episodio y en /reset.
-- Disposición del Panel de Shulkers: los interruptores de shulkers ahora están junto a sus selectores de episodio para configurar más rápido.
-- Salida de Consola Más Clara: la comprobación de dependencias y el banner de inicio muestran líneas de estado limpias y fáciles de leer para el host del servidor.
+- Skin rotation in episode 1 starts sooner and applies identities faster.
+- Player skins are loaded when players join and when the match roster is prepared, so identity rotation and death heads are ready sooner.
+- The chunks around the scatter points are loaded before players are teleported, which reduces lag at match start. Pregenerating the world up to the border is still recommended for real matches.
+- Tablist names and nametags refresh one player at a time at match start, at chapter changes and on `/reset`, so TAB animations no longer freeze.
+- With 1.8 combat on, axes deal legacy damage: 6 for diamond and 7 for netherite.
+- World game rules can be changed from the Admin Panel during a match, not only in the lobby.
+- The shulker toggles sit next to their episode selectors in the Shulkers panel.
+- The dependency check and the startup banner print clear status lines in the console.
 
-Corrección de Errores
-- Vida en TAB: la vida del tabulador se crea cuando hace falta y se refresca poco después de empezar la partida y cada vez que un jugador se reconecta.
-- Episodio 1 de PVP: el PVP ahora se activa correctamente al inicio de la partida cuando el episodio configurado es el 1.
-- Ajustes Admin en Partida: los ajustes de shulkers, episodio de PVP, episodio de equipos y rotación de skins se bloquean al empezar la partida, mientras que combate 1.8 y mano secundaria/escudos siguen siendo editables durante la partida.
-- Cabezas Bajo Agua: la colocación de cabezas de muerte ahora busca una posición reemplazable más segura y suelta una cabeza como fallback si no se puede completar la colocación.
-- Mensaje del Barco de Rescate: el mensaje de rescate acuático ahora muestra el prefijo del plugin en lugar de un marcador %prefix% en crudo.
-- Nombres Reales Tras el Reset: /reset devuelve al tabulador y a los nametags los nombres reales al instante, sin identidades falsas de la partida anterior.
+### Fixed
 
----
+- TAB player-list health is created when needed and refreshed after the match starts and when a player reconnects.
+- PVP turns on at match start when the PVP episode is 1.
+- Shulker, PVP episode, team episode and skin rotation settings lock once the match starts. 1.8 combat and the offhand/shield lock can still be changed during the match.
+- Death heads look for a safer place, for example under water, and drop as an item when they cannot be placed.
+- The rescue boat message shows the plugin prefix instead of a raw `%prefix%`.
+- `/reset` brings back real names in the tablist and nametags at once, with no fake identities left from the previous match.
+- Skins are applied correctly when players join, at match start and during the match.
 
-Changelog - UHC ELOUD 1.5.3
+## [1.5.3] - 2026-09-22
 
-=== ENGLISH ===
+First version numbered without `-SNAPSHOT`. It needs Minecraft 26.2, Java 25, TAB and SkinsRestorer.
 
-New Features
-- Team Formation Episode: You can now choose the episode (1-10) in which teams are formed (when the compasses are given). Set it from the Admin Panel (General Rules -> Team Formation Episode) or directly with the new command /setteamepisode <1-10>.
-- PVP Episode: You can now choose the episode (1-10) in which the gentleman's pact ends and PVP becomes active. Set it from the Admin Panel (General Rules -> PVP Episode) or directly with /setpvpepisode <1-10>.
-- Tab Completion: All commands now include autocomplete suggestions (/start with border sizes, /lang with languages, /setteamepisode with episodes 1-10, /assignteam and /abandon with online players, /settime, /team...).
+### Added
 
-Adjustments and Improvements
-- Admin Panel Rework: The administration panel was restructured with dedicated sub-menus and a single source of truth for its slots (AdminSlots), improving the flow for choosing shulkers, episodes, game rules, border and chapter time.
-- New Admin Commands: /abandon [player] lets you leave the game (or mark another player as eliminated, online or offline) without the GUI, and the admin commands were reorganized (/assignteam, /settime, /team...).
-- Extracted Managers: The skin rotation now lives in its own SkinsManager, the TAB integration in TABManager and the world/supplies logic in WorldManager, making the plugin easier to maintain.
-- Language System: Translations updated for all the new options (es/en).
+- Team formation episode (1-10): the episode when teams are formed and ally compasses are given. Set it in the Admin Panel (*General Rules* > *Team Formation Episode*) or with `/setteamepisode <1-10>`.
+- PVP episode (1-10): the episode when the gentleman's pact ends. Set it in the Admin Panel (*General Rules* > *PVP Episode*) or with `/setpvpepisode <1-10>`.
+- `/abandon [player]`: leave the match, or, as an admin, mark another player as eliminated, online or offline.
+- Tab completion for every command.
+- `tab.setup-mode` in `config.yml` (`off`, `once` or `force`) decides whether the plugin writes the TAB configuration.
 
-Bugfixes
-- Smooth Skin Rotation: Skins are now applied staggered (first batch 10 seconds after the chapter change, then one player every 5 seconds), avoiding the lag spike when everyone rotated at once.
-- Combat Protection: If a player is in combat when their rotation turn comes, they are postponed (up to 6 retries inside a 30 seconds window) and skipped if the fight lasts too long, instead of changing their skin mid-fight.
-- Offline Players: Players who are offline during the rotation no longer waste their skin; when they rejoin, their identity is re-synchronized instantly and again a few seconds later.
-- Revealed identities stay revealed for the current episode only: at the next chapter rotation, surviving players are masked again with a new identity.
-- Reset restores real skins: /reset now applies each player's own real skin back (from the internal cache and via SkinsRestorer), so the lobby no longer keeps the fake skins from the previous game.
-- Start cancellation (auto-cancel) no longer leaves the rotation half-applied.
+### Changed
 
-Audit (Security, Lifecycle and Reliability)
-- Team Security: teams are now namespaced with an internal prefix, so the plugin no longer deletes or touches scoreboard teams from other plugins; legacy bare teams are migrated once (config marker).
-- GUI Security: admin menus cancel recognized clicks before inspecting items, validate the top inventory with raw slots, protect against drags, and require the admin permission.
-- Game Lifecycle: new safe phases (INITIALIZING, PREPARING, COUNTDOWN); the roster is frozen by UUID/name at prepare time (spectators excluded); the stored border size is used by /confirmstart (its argument is never trusted); scatter uses the main world with planned positions; resets and cancellation invalidate pending tasks; RUNNING starts only after the countdown; victories go through a single enterEnding() path.
-- Resource Rush: objectives are only awarded on real pickups and verified crafting (amount compared before/after), not generic clicks; delayed tasks are tracked and invalidated; offline participant progress is migrated; individual winners are supported; team formation on episode 1 fixed.
-- TAB: %rel_nametag_color% fixed, overrides are cleared outside RUNNING/PAUSED, automatic setup is governed by tab.setup-mode (off/once/force) with a persistent setup-completed marker.
-- Threading: the whole skin rotation queue runs on the main thread (only remote SkinsRestorer lookups are async), with stale responses ignored.
-- Update Checker: corrupted UUIDs are skipped, IO errors are no longer silent, HTTP connections are disconnected on exit, parsing tolerates whitespace and version comparison is covered by tests.
-- Build: Paper pinned to 26.2.build.126-stable, plugin.yml expands ${version} and hard-depends on TAB and SkinsRestorer, JaCoCo coverage added.
-- Tests/CI: the JUnit 5 suite grew from 24 to 47 tests (all green) and GitHub Actions CI runs tests, the JAR build and the coverage report on Java 25.
+- Requires Minecraft 26.2 and Java 25 (before: Minecraft 1.21.11 and Java 21).
+- TAB and SkinsRestorer are required: the plugin does not start without them.
+- The Admin Panel has its own submenus for shulkers, team episode, PVP episode, game rules, border and time.
+- `/tpartes` is now `/settime`.
+- Skins rotate in turns to avoid lag: the first players 10 seconds after the chapter change, then one player every 5 seconds.
+- A player in combat gets the new skin after the fight, or skips that rotation if the fight lasts too long.
+- A revealed identity stays revealed until the end of the episode; survivors get a new identity at the next rotation.
+- Global chat during a match is anonymous (`[GLOBAL] message`), so the readable text no longer shakes next to obfuscated names.
+- `/assignteam` accepts colors as shown (`red`, `RED`) or with the internal prefix (`h_red`), and suggests plain colors.
+- The ally compass shows the teammate's name and distance in the action bar every second, in the main hand or the off-hand.
 
-User Feedback Fixes
-- Reset keeps custom teams: /reset no longer unregisters the h_* teams it just recreated, so the Nether Star team selector keeps listing teams right after a reset (no need to toggle the mode off/on).
-- Clean color input in /assignteam: the color is now read as the visible color ("red", "RED") or with the internal prefix ("h_red") interchangeably; the h_ prefix is internal and is no longer shown in tab-complete, which suggests plain colors instead.
-- Foreign teams untouched by /assignteam: the command only removes the target from a team if it belongs to this plugin, never from other plugins' teams.
-- Compass actionbar fixed: the ally compass now shows name + distance every second over the health bar while held in the main hand OR off-hand (previously it only flashed when the target changed and only in the main hand).
-- Global chat simplified during matches: global messages are now anonymous (`[GLOBAL] message`) to avoid Minecraft's obfuscated-text width jitter making the readable message vibrate.
-- Compass no longer points to 0,0 after a skin change: team membership is tracked in an internal cache instead of reading the main scoreboard, because TAB manages the scoreboard teams (scoreboard-teams/sorting) and can move a player away from their h_* team when refreshing their nametag/prefix; the compass and team logic now read from the plugin's own authoritative membership, immune to TAB reassignments.
-- Compass target is re-sent after visual skin/TAB refreshes, so the needle keeps pointing to the teammate even if the client resets its compass target.
-- /reset keeps the teams you had selected: the selected team memberships are snapshotted before the reset and restored right after the h_* teams are recreated, so the Nether Star selector lists the same members again instead of empty teams.
+### Fixed
 
-=== ESPAÑOL ===
+- Players who are offline during a skin rotation keep their turn, and their identity is resynchronized when they reconnect.
+- `/reset` brings back real skins and keeps the custom teams and the players selected in them.
+- The ally compass keeps pointing at the teammate after a skin or TAB refresh, instead of pointing at 0, 0.
+- Team membership no longer breaks when TAB reorders scoreboard teams.
+- Cancelling the start no longer leaves the skin rotation half applied.
+- Resource Rush: objectives count only items really picked up or crafted, offline players keep their progress, a single player can win, and teams form correctly in episode 1.
 
-Nuevas Funciones
-- Episodio de Formación de Equipos: Ahora puedes elegir el episodio (1-10) en el que se forman los equipos (cuando se reparten las brújulas). Selecciónalo desde el Panel de Admin (Reglas Generales -> Episodio de Formación de Equipos) o directamente con el nuevo comando /setteamepisode <1-10>.
-- Episodio de PVP: Ahora puedes elegir el episodio (1-10) en el que termina el pacto de caballeros y se activa el PVP. Selecciónalo desde el Panel de Admin (Reglas Generales -> Episodio de PVP) o directamente con /setpvpepisode <1-10>.
-- Autocompletado (Tab-Completion): Todos los comandos incluyen ahora sugerencias de autocompletado (/start con tamaños de borde, /lang con idiomas, /setteamepisode con episodios 1-10, /assignteam y /abandon con jugadores online, /settime, /team...).
+### Security
 
-Ajustes y Mejoras
-- Panel de Admin Reestructurado: El panel de administración se reorganizó con sub-menus dedicados y una unica fuente de verdad para sus slots (AdminSlots), mejorando el flujo para elegir shulkers, episodios, reglas, borde y tiempo de capítulo.
-- Nuevos Comandos Admin: /abandon [jugador] permite abandonar la partida (o marcar a otro jugador como eliminado, online u offline) sin necesidad de la GUI, y se reorganizaron los comandos admin (/assignteam, /settime, /team...).
-- Managers Extraídos: La rotación de skins ahora vive en su propio SkinsManager, la integración con TAB en TABManager y la lógica de mundo/suministros en WorldManager, facilitando el mantenimiento del plugin.
-- Sistema de Idiomas: Traducciones actualizadas para todas las opciones nuevas (es/en).
+- The plugin only manages its own scoreboard teams (prefix `h_`) and never deletes or changes teams of other plugins. Teams from older versions are migrated once.
+- Admin menus require the admin permission and block clicks and drags that could take their items.
 
-Corrección de Errores
-- Rotación de Skins sin Lag: Las skins se aplican ahora de forma escalonada (primera tanda a los 10 segundos del cambio de capítulo y luego 1 jugador cada 5 segundos), evitando el pico de lag cuando todos rotaban a la vez.
-- Proteccion en Combate: Si un jugador está en pleno combate cuando le toca rotar, se pospone (hasta 6 reintentos dentro de una ventana de 30 segundos) y se salta si la pelea dura demasiado, en lugar de cambiarle la skin en mitad del PvP.
-- Jugadores Desconectados: Los jugadores que están offline cuando toca la rotacion ya no gastan su skin; al reconectar, su identidad se resincroniza al instante y de nuevo unos segundos después.
-- Las identidades reveladas permanecen así durante el episodio actual: en la siguiente rotación de capítulo, los supervivientes vuelven a ser camuflados con una identidad nueva.
-- El reset restaura las skins reales: /reset vuelve a aplicar la skin propia de cada jugador (desde la caché interna y via SkinsRestorer), de modo que el lobby ya no conserva las skins falsas de la partida anterior.
-- La cancelacion del inicio (auto-cancel) ya no deja la rotacion a medias.
+## [1.4.5-SNAPSHOT] - 2025-12-29
 
-Auditoría (Seguridad, Ciclo de partida y Fiabilidad)
-- Seguridad de equipos: los equipos ahora llevan un prefijo interno, de modo que el plugin ya no borra ni toca equipos de scoreboard de otros plugins; los equipos legacy sin prefijo se migran una sola vez (marcador de config).
-- Seguridad de GUI: los menús admin cancelan los clics reconocidos antes de inspeccionar ítems, validan el inventario superior con raw slots, protegen contra drags y exigen permiso admin.
-- Ciclo de partida: nuevas fases seguras (INITIALIZING, PREPARING, COUNTDOWN); el roster se congela por UUID/nombre al preparar (excluye espectadores); /confirmstart usa el tamaño almacenado (nunca confía en su argumento); el scatter usa el mundo principal con posiciones planificadas; los resets y la cancelación invalidan las tareas pendientes; RUNNING empieza solo tras el countdown; las victorias pasan por un único enterEnding().
-- Resource Rush: los objetivos solo se conceden por pickups reales y crafting verificado (cantidad antes/después), no por clics genéricos; las tareas diferidas se registran e invalidan; el progreso de participantes offline migra; se soportan ganadores individuales; corregida la formación de equipos en el episodio 1.
-- TAB: corregido %rel_nametag_color%, los overrides se limpian fuera de RUNNING/PAUSED y la configuración automática se gobierna con tab.setup-mode (off/once/force) más el marcador persistente setup-completed.
-- Threading: toda la cola de rotación de skins corre en el hilo principal (solo las búsquedas remotas de SkinsRestorer son async), ignorando respuestas obsoletas.
-- Update checker: los UUID corruptos se omiten, los errores IO ya no se silencian, las conexiones HTTP se desconectan al salir, el parsing tolera espacios y el comparador de versiones tiene tests.
-- Build: Paper fijado a 26.2.build.126-stable, plugin.yml expande ${version} y depende de forma obligatoria de TAB y SkinsRestorer, con cobertura JaCoCo.
-- Tests/CI: la suite JUnit 5 crece de 24 a 47 tests (todos verdes) y la CI de GitHub Actions ejecuta tests, el build del JAR y el informe de cobertura en Java 25.
+### Changed
 
-Correcciones por Feedback de Usuario
-- El reset conserva los equipos custom: /reset ya no desregistra los equipos h_* que acaba de recrear, así que la estrella de Nether sigue mostrando equipos justo después de un reset (sin necesidad de desactivar y reactivar el modo a mano).
-- Entrada de color limpia en /assignteam: el color se lee de forma intercambiable como color visible ("red", "RED") o con el prefijo interno ("h_red"); el prefijo h_ es interno y ya no aparece en el autocompletado, que sugiere colores limpios.
-- /assignteam no toca equipos ajenos: el comando solo retira al objetivo de un equipo si pertenece a este plugin, nunca de equipos de otros plugins.
-- Actionbar de brújula corregida: la brújula de aliado muestra ahora nombre + distancia cada segundo sobre la barra de vida mientras se sostiene en mano principal U off-hand (antes solo parpadeaba al cambiar el objetivo y solo en la mano principal).
-- Chat global simplificado durante partida: los mensajes globales ahora son anónimos (`[GLOBAL] mensaje`) para evitar que la animación del texto ofuscado de Minecraft haga vibrar el mensaje legible.
-- La brújula ya no apunta a 0,0 tras un cambio de skin: la pertenencia a equipos se registra en una caché interna en lugar de leer el scoreboard principal, porque TAB gestiona los teams del scoreboard (scoreboard-teams/sorting) y puede mover al jugador fuera de su equipo h_* al refrescar su nametag/prefix; la brújula y la lógica de equipos ahora leen de la membresía autoritativa del plugin, inmune a las reasignaciones de TAB.
-- La brújula reenvía su objetivo tras refrescos visuales de skin/TAB, de modo que la aguja sigue apuntando al compañero aunque el cliente reinicie el target.
-- /reset conserva los equipos seleccionados: las membresías elegidas se capturan antes del reset y se restauran justo después de recrear los equipos h_*, de modo que la estrella de Nether vuelve a listar los mismos miembros en lugar de equipos vacíos.
+- Random teams spread living players evenly. With 7 players alive for 4 teams, the teams get 2, 2, 2 and 1 living players, and eliminated players fill the rest.
+- Spanish and English messages reviewed for consistent wording and colors.
 
-Version compatible with:
+### Fixed
 
-Bukkit implementations for 1.21.11 only (Paper recommended)
-VERSION IS NOT COMPATIBLE WITH VERSIONS PRIOR TO 1.21.11
-As of this build, Java 25 or higher is required.
-Source code and full details here: https://github.com/Dalibex/UHC_Plugin
+- Commands reject negative numbers, letters in numeric arguments and borders under 20 blocks.
+- *Cancel* in the `/start` confirmation cancels the start.
+- `/tpartes`, `/lang` and `/start` are blocked once the match has started.
+
+## [1.4.4-SNAPSHOT] - 2025-12-29
+
+### Fixed
+
+- When every player but one dies before the teams are formed, that player wins.
+
+## [1.4.3-SNAPSHOT] - 2025-12-28
+
+### Added
+
+- Supply shulker boxes in episodes 1 and 8. They can be turned off in the Admin Panel.
+- The victory message lists every member of the winning team, with fallen teammates struck through in gray.
+- Winners get Resistance and instant health during the celebration.
+
+### Changed
+
+- `/reset` teleports every player to the spawn (0, 0) and clears inventories and the previous victory.
+- Natural health regeneration is turned off in every world at match start.
+
+### Fixed
+
+- A death before the teams were formed ended the match without a winner.
+- TAB health shows correctly from the start of the match.
+
+## [1.3.1-SNAPSHOT] - 2025-12-25
+
+### Added
+
+- Golden heads: players leave their head on a fence where they die. A head surrounded by 8 gold ingots crafts a golden head, which gives Regeneration II for 12 seconds and Absorption II for 5 minutes.
+- Locator bar option in the game rules of the Admin Panel.
+- `/tpartes <h> <m> <s>` sets the chapter duration.
+- Lobby standby after `/reset`: players are in adventure mode, invulnerable and never hungry. The countdown removes these effects and switches players to survival.
+
+### Fixed
+
+- The team compass follows the nearest teammate on its own.
+
+## [1.2.0-SNAPSHOT] - 2025-12-24
+
+### Added
+
+- 1.8-style combat: no attack cooldown, no sweep attack and rebalanced axe damage.
+- Shield and offhand lock, which also blocks shift-click, the swap key and dragging items into the off-hand.
+- Victory detection for the last team alive, with fireworks, sounds and a sidebar that shows the winning team.
+
+### Fixed
+
+- The scatter no longer places players underground at negative coordinates or on snow.
+- A player scattered onto water or lava gets a glass platform right below them.
+- Chat colors are easier to read, team chat works for a player alone, and messages are no longer duplicated.
+
+## [1.1.0-SNAPSHOT] - 2025-12-23
+
+First version, for Paper 1.21.11.
+
+### Added
+
+- Admin Panel (`/uhcadmin`) for the border, chapter time, teams and game rules, also during a match.
+- Even scatter of the players inside the border.
+
+[Unreleased]: https://github.com/Dalibex/eloud-uhc/compare/v1.5.4...HEAD
+[1.5.4]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.5.4
+[1.5.3]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.5.3
+[1.4.5-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.4.5-SNAPSHOT
+[1.4.4-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.4.4-SNAPSHOT
+[1.4.3-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.4.3-SNAPSHOT
+[1.3.1-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.3.1-SNAPSHOT
+[1.2.0-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.2.0-SNAPSHOT
+[1.1.0-SNAPSHOT]: https://github.com/Dalibex/eloud-uhc/releases/tag/v1.1.0-SNAPSHOT
